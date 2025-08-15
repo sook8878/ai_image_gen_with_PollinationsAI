@@ -1,0 +1,35 @@
+services:
+  web:
+    build: .      # 현재 디렉토리 (.) 에 있는 도커파일을 기준으로 이미지 빌드 한다는 설정.
+    container_name: ai_image_gen  # 장고(웹) 컨테이너 이름 지정
+    ports:
+      - "8100:8100"
+    volumes:
+      - .:/app    # 생략 가능하지만, 볼륨 설정을 하면 파일 수정이 컨테이너에 즉각 반영됨.(개발 시 유용)
+#    depends_on:
+#      - db        # db가 실행된 이후 실행 되도록 하는 설정
+#    networks:
+#      - django_network  # 도커 네트워크에 연결. 생략 시 네트워크자 자동으로 생성 된다고 함.
+
+#  db:
+#    image: postgres:14    # 14로 하는게 일반적. 'latest' 로 최신버전으로 명시도 가능.
+#    volumes:
+#      - postgres_db_data:/var/lib/postgresql/data  # postgres db 데이터 저장 되도록 하는 설정 (컨테이너 껐다 켜도 저장되도록 볼륨에 유지)
+#    container_name: postgres_study  # 컨테이너명. 세팅즈의 Host와 동일하게 적어야 함.
+#    ports:
+#      - "5432:5432"
+#    environment:
+#      POSTGRES_DB: main
+#      POSTGRES_USER: sa
+#      POSTGRES_PASSWORD: yj0084
+#
+#    networks:
+#      - django_network
+
+#networks:
+#  django_network:
+#    driver: bridge  # 기본 설정이 브릿지. 같은 네트워크의 컨테이너들이 컨테이너 이름으로 접근 가능하도록 하는 설정임.
+
+# db 는 따로 볼륨을 적어 정의해 주어야 인식함. (전역에 등록 해주는 방식)
+#volumes:
+#  postgres_db_data:
